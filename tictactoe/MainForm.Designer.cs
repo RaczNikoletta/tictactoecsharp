@@ -30,9 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.TictacLabel = new System.Windows.Forms.Label();
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ScoreLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -40,9 +38,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.MediumSpringGreen;
-            this.label1.Location = new System.Drawing.Point(212, 9);
+            this.label1.Location = new System.Drawing.Point(114, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(357, 119);
+            this.label1.Size = new System.Drawing.Size(181, 60);
             this.label1.TabIndex = 0;
             this.label1.Text = "GAMES";
             // 
@@ -51,59 +50,38 @@
             this.TictacLabel.AutoSize = true;
             this.TictacLabel.Font = new System.Drawing.Font("Showcard Gothic", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TictacLabel.ForeColor = System.Drawing.Color.Cyan;
-            this.TictacLabel.Location = new System.Drawing.Point(12, 199);
+            this.TictacLabel.Location = new System.Drawing.Point(6, 93);
+            this.TictacLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TictacLabel.Name = "TictacLabel";
-            this.TictacLabel.Size = new System.Drawing.Size(352, 66);
+            this.TictacLabel.Size = new System.Drawing.Size(179, 33);
             this.TictacLabel.TabIndex = 1;
             this.TictacLabel.Text = "Tic-Tac-Toe";
             this.TictacLabel.Click += new System.EventHandler(this.TictacLabel_Click);
             // 
-            // NameLabel
+            // label2
             // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Font = new System.Drawing.Font("Showcard Gothic", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.NameLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.NameLabel.Location = new System.Drawing.Point(533, 328);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(133, 53);
-            this.NameLabel.TabIndex = 2;
-            this.NameLabel.Text = "Name";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.label3.Location = new System.Drawing.Point(471, 393);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 30);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Score: ";
-            // 
-            // ScoreLabel
-            // 
-            this.ScoreLabel.AutoSize = true;
-            this.ScoreLabel.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ScoreLabel.ForeColor = System.Drawing.Color.Firebrick;
-            this.ScoreLabel.Location = new System.Drawing.Point(591, 393);
-            this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(85, 30);
-            this.ScoreLabel.TabIndex = 4;
-            this.ScoreLabel.Text = "score";
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(294, 171);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "userLabel";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ScoreLabel);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.NameLabel);
+            this.ClientSize = new System.Drawing.Size(431, 211);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.TictacLabel);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "MainForm";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,8 +91,6 @@
 
         private Label label1;
         private Label TictacLabel;
-        private Label NameLabel;
-        private Label label3;
-        private Label ScoreLabel;
+        private Label label2;
     }
 }
