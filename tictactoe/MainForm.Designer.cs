@@ -30,7 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.TictacLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.UserLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ScoreLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -58,16 +61,50 @@
             this.TictacLabel.Text = "Tic-Tac-Toe";
             this.TictacLabel.Click += new System.EventHandler(this.TictacLabel_Click);
             // 
-            // label2
+            // UserLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(294, 171);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "userLabel";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.UserLabel.AutoSize = true;
+            this.UserLabel.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UserLabel.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.UserLabel.Location = new System.Drawing.Point(327, 152);
+            this.UserLabel.Name = "UserLabel";
+            this.UserLabel.Size = new System.Drawing.Size(72, 15);
+            this.UserLabel.TabIndex = 2;
+            this.UserLabel.Text = "userLabel";
+            this.UserLabel.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Showcard Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label3.Location = new System.Drawing.Point(238, 150);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 17);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Username: ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Showcard Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label4.Location = new System.Drawing.Point(222, 185);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 17);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Total score:";
+            // 
+            // ScoreLabel
+            // 
+            this.ScoreLabel.AutoSize = true;
+            this.ScoreLabel.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ScoreLabel.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.ScoreLabel.Location = new System.Drawing.Point(341, 185);
+            this.ScoreLabel.Name = "ScoreLabel";
+            this.ScoreLabel.Size = new System.Drawing.Size(47, 15);
+            this.ScoreLabel.TabIndex = 5;
+            this.ScoreLabel.Text = "label5";
             // 
             // MainForm
             // 
@@ -75,7 +112,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(431, 211);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.ScoreLabel);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.TictacLabel);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
@@ -91,6 +131,9 @@
 
         private Label label1;
         private Label TictacLabel;
-        private Label label2;
+        private Label UserLabel;
+        private Label label3;
+        private Label label4;
+        private Label ScoreLabel;
     }
 }

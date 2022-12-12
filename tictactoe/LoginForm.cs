@@ -22,11 +22,44 @@ namespace tictactoe
         SQLiteCommand cmd;
         SQLiteDataAdapter dr;
         public LoginForm()
-        { 
+        {
+           /* con = new SQLiteConnection(cs);
+            con.Open();
+            string stm = "SELECT username, password, score, isLogged from user";
+            var cmd = new SQLiteCommand(stm, con);
+            var dr = cmd.ExecuteReader();
+            bool isLogged = false;
+
+            while (dr.Read())
+            {
+                try
+                {
+                    if (dr.GetInt32(3) == 1) /*check logged user*/
+                    /*{
+                            isLogged = true;
+                            var score = dr.GetInt32(2);
+                            MainForm main = new MainForm(dr.GetString(0), dr.GetInt32(3));
+                            // Show the main form
+                            this.Hide();
+                            main.Show();
+
+
+
+                        }
+                    
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid credintials" + ex.Message);
+                }
+                
+            }*/
             InitializeComponent();
         }
         private void label3_Click(object sender, EventArgs e)
         {
+            
 
         }
 
@@ -54,13 +87,11 @@ namespace tictactoe
                         if (password == dr.GetString(1))
                         {
                             //authentication sucessfull
-                         
-                            
+
+
                             //Pass values to Mainform
-                       
-                            MainForm main = new MainForm(username);
-                            //var valami = dr.GetString(2);
-                            //scorepass = Int32.Parse(valami);
+                            var score = dr.GetInt32(2);
+                            MainForm main = new MainForm(username,score);
                             // Show the main form
                             this.Hide();
                             main.Show();
@@ -93,6 +124,16 @@ namespace tictactoe
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
