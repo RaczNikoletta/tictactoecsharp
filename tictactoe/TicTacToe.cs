@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,7 @@ namespace tictactoe
         List<Button> buttons;
         string userName;
         int userScore;
+        bool playerMoved = false;
 
 
         public TicTacToe()
@@ -75,21 +78,29 @@ namespace tictactoe
                 buttons.RemoveAt(index);
                 CheckGame();
             }
+            playerMoved = false;
             timer1.Stop();
 
         }
 
         private void PlayerClickButton(object sender, EventArgs e)
         {
+            
             var button = (Button)sender;
-
-            currentPlayer = Player.X;
-            button.Text = currentPlayer.ToString();
-            button.Enabled = false;
-            button.BackColor = Color.AliceBlue;
-            buttons.Remove(button);
-            CheckGame();
-            timer1.Start();
+            if (!playerMoved)
+            {
+                playerMoved = true;
+                currentPlayer = Player.X;
+                button.Text = currentPlayer.ToString();
+                button.Enabled = false;
+                button.BackColor = Color.AliceBlue;
+                buttons.Remove(button);
+                CheckGame();
+                timer1.Start();
+            }
+            else {
+                MessageBox.Show("CPU moves", "Please wait for CPU");
+            }
         }
 
         private void RestartGame(object sender, EventArgs e)
@@ -137,12 +148,33 @@ namespace tictactoe
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            //TODO: save score to database
+            // save score to database
 
-            MainForm main = new MainForm(userName, userScore);
-            // Show the main form
+            string cs = @"URI=file:" + Application.StartupPath + "\\userdata.db";
+            SQLiteConnection con;
+            SQLiteCommand cmd = new SQLiteCommand();
+            using (con = new SQLiteConnection(cs))
+            {
+                con.Open();
+                using (SQLiteCommand command = new SQLiteCommand(con))
+                {
+                    cmd.Connection = con;
+
+                    command.CommandText =
+                        @"update user set score = @score where username = @username";
+
+                    command.Parameters.Add("score", DbType.Int32).Value = userScore+playerWinCount;
+                    command.Parameters.Add("username", DbType.String).Value = userName;
+                    command.ExecuteNonQuery();
+
+                }
+            }
+
+            MainForm main = new MainForm(userName, userScore + playerWinCount);
             this.Hide();
-            main.Show();
+            main.ShowDialog();
+            
+
 
         }
     }

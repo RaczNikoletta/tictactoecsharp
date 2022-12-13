@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.ScoreLabel = new System.Windows.Forms.Label();
+            this.LogOutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -106,12 +107,27 @@
             this.ScoreLabel.TabIndex = 5;
             this.ScoreLabel.Text = "label5";
             // 
+            // LogOutButton
+            // 
+            this.LogOutButton.BackColor = System.Drawing.Color.Red;
+            this.LogOutButton.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LogOutButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LogOutButton.Location = new System.Drawing.Point(355, 4);
+            this.LogOutButton.Name = "LogOutButton";
+            this.LogOutButton.Size = new System.Drawing.Size(75, 23);
+            this.LogOutButton.TabIndex = 6;
+            this.LogOutButton.Text = "Log Out";
+            this.LogOutButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.LogOutButton.UseVisualStyleBackColor = false;
+            this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(431, 211);
+            this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.ScoreLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -135,5 +151,6 @@
         private Label label3;
         private Label label4;
         private Label ScoreLabel;
+        private Button LogOutButton;
     }
 }

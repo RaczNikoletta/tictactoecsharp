@@ -19,47 +19,22 @@ namespace tictactoe
         string path = "userdata.db";
         string cs = @"URI=file:" + Application.StartupPath + "\\userdata.db";
         SQLiteConnection con;
+        MainForm main;
         SQLiteCommand cmd;
         SQLiteDataAdapter dr;
+        bool isLogged = false;
         public LoginForm()
         {
-           /* con = new SQLiteConnection(cs);
-            con.Open();
-            string stm = "SELECT username, password, score, isLogged from user";
-            var cmd = new SQLiteCommand(stm, con);
-            var dr = cmd.ExecuteReader();
-            bool isLogged = false;
-
-            while (dr.Read())
-            {
-                try
-                {
-                    if (dr.GetInt32(3) == 1) /*check logged user*/
-                    /*{
-                            isLogged = true;
-                            var score = dr.GetInt32(2);
-                            MainForm main = new MainForm(dr.GetString(0), dr.GetInt32(3));
-                            // Show the main form
-                            this.Hide();
-                            main.Show();
-
-
-
-                        }
-                    
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Invalid credintials" + ex.Message);
-                }
+           
                 
-            }*/
-            InitializeComponent();
+                InitializeComponent();
+            
         }
         private void label3_Click(object sender, EventArgs e)
         {
-            
+            RegisterForm reg = new RegisterForm();
+            this.Hide();
+            reg.ShowDialog();
 
         }
 
@@ -91,13 +66,7 @@ namespace tictactoe
 
                             //Pass values to Mainform
                             var score = dr.GetInt32(2);
-                            MainForm main = new MainForm(username,score);
-                            // Show the main form
-                            this.Hide();
-                            main.Show();
-                 
-
-
+                            main = new MainForm(username,score);
                         }
                         else
                         {
@@ -110,10 +79,20 @@ namespace tictactoe
                 {
                     MessageBox.Show("Invalid credintials" + ex.Message);
                 }
-                if (!exists)
+                
+                }
+            con.Close();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            if (!exists)
                 {
                     MessageBox.Show("Invalid username");
                 }
+                else {
+                this.Hide();
+                main.ShowDialog();
+              
+               
             }
 
 
@@ -136,6 +115,51 @@ namespace tictactoe
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            con = new SQLiteConnection(cs);
+            con.Open();
+            string stm = "SELECT username, password, score, isLogged from user";
+            var cmd = new SQLiteCommand(stm, con);
+            var dr = cmd.ExecuteReader();
+
+
+            while (dr.Read())
+            {
+                try
+                {
+                    if (dr.GetInt32(3) == 1) /*check logged user*/
+                    {
+                        isLogged = true;
+                        var score = dr.GetInt32(2);
+                        main = new MainForm(dr.GetString(0), dr.GetInt32(2));
+
+
+
+
+                    }
+
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid credintials" + ex.Message);
+                }
+
+            }
+            con.Close();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            if (isLogged)
+            {
+                // Show the main form
+                
+                main.ShowDialog();
+                this.Close();
+
+            }
         }
     }
 }

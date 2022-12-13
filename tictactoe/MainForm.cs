@@ -17,7 +17,7 @@ namespace tictactoe
         string path = "userdata.db";
         string cs = @"URI=file:" + Application.StartupPath + "\\userdata.db";
         SQLiteConnection con;
-        SQLiteCommand cmd;
+        SQLiteCommand cmd = new SQLiteCommand();
         SQLiteDataAdapter dr;
         string userName;
         int userScore;
@@ -34,16 +34,7 @@ namespace tictactoe
             ScoreLabel.Text = score.ToString();
             userName = user.ToString();
             userScore = score;
-            /*con = new SQLiteConnection(cs);
-            con.Open();
-            using (SQLiteCommand command = new SQLiteCommand(con))
-            {
-                command.CommandText =
-                    "update user set isLogged = :islogged where username=:username";
-                command.Parameters.Add("isLogged", DbType.Int32).Value = 1;
-                command.Parameters.Add("username", DbType.String).Value = user;
-                command.ExecuteNonQuery();
-            }*/
+
         }
 
 
@@ -51,20 +42,60 @@ namespace tictactoe
         {
             this.Hide();
             TicTacToe game = new TicTacToe(userName,userScore);
-            game.Show();
+            game.ShowDialog();
         }
 
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Get value from LoginForm
-           
+            using (con = new SQLiteConnection(cs))
+            {
+                con.Open();
+                using (SQLiteCommand command = new SQLiteCommand(con))
+                {
+                    cmd.Connection = con;
+                    
+                    command.CommandText =
+                        "update user set isLogged = @islogged where username = @username";
+
+                    command.Parameters.Add("islogged", DbType.Int32).Value = 1;
+                    command.Parameters.Add("username", DbType.String).Value = userName;
+                    command.ExecuteNonQuery();
+
+                }
+            }
+
 
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
             //label2.Text = username;
+        }
+
+        private void LogOutButton_Click(object sender, EventArgs e)
+        {
+            using (con = new SQLiteConnection(cs))
+            {
+                con.Open();
+                using (SQLiteCommand command = new SQLiteCommand(con))
+                {
+                    cmd.Connection = con;
+
+                    command.CommandText =
+                        "update user set isLogged = @islogged where username = @username";
+
+                    command.Parameters.Add("islogged", DbType.Int32).Value = 0;
+                    command.Parameters.Add("username", DbType.String).Value = userName;
+                    command.ExecuteNonQuery();
+
+                }
+            }
+            LoginForm login = new LoginForm();
+            this.Hide();
+            login.ShowDialog();
+            
         }
     }
 }
