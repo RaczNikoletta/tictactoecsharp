@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Data.SQLite;
 using Microsoft.Data.Sqlite;
 using System.Xml;
+using static System.Formats.Asn1.AsnWriter;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace tictactoe
 {
@@ -25,10 +27,20 @@ namespace tictactoe
         bool isLogged = false;
         public LoginForm()
         {
-           
-                
-                InitializeComponent();
-            
+            InitializeComponent();
+            try
+            {
+                con = new SQLiteConnection(cs);
+                con.Open();
+                string stm = "CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT (51), password TEXT(50), score INTEGER DEFAULT(0), isLogged INTEGER DEFAULT(0));";
+                var cmd = new SQLiteCommand(stm, con);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            { 
+                MessageBox.Show(e.Message);
+            }
+
         }
         private void label3_Click(object sender, EventArgs e)
         {
